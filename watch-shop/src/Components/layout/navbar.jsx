@@ -30,35 +30,33 @@ const Navbar = () => {
             Home
           </Link>
 
-          <Link>
+         {/* Titan */}
+<a
+  href="https://www.titan.co.in/"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="flex items-center"
+>
+  <img
+    src={titanLogo}
+    alt="Titan"
+    className="w-[100px] object-contain"
+  />
+</a>
 
-          {/* Fastrack */}
-          <a
-            href="https://www.titan.co.in/"
-            className="flex items-center"
-          >
-           <img
-            src={titanLogo}
-            alt="Titan"
-            className="w-[100px] object-contain"
-          />
-          </a>
-          </Link>
-<Link>
-          {/* Fastrack */}
-          <a
-            href="https://www.fastrack.in/"
-            className="flex items-center"
-          >
-           
-          <img
-            src={fastrackLogo}
-            alt="Fastrack"
-            className="w-[160px] object-contain"
-          />
-          </a>
-        </Link>
-
+{/* Fastrack */}
+<a
+  href="https://www.fastrack.in/"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="flex items-center"
+>
+  <img
+    src={fastrackLogo}
+    alt="Fastrack"
+    className="w-[160px] object-contain"
+  />
+</a>
             
           
 
