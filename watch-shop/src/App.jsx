@@ -1,56 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./Components/layout/navbar";
-import Footer from "./Components/layout/footer";
+import Home from "./pages/home";
+import About from "./pages/about";
+import Contact from "./pages/contact";
 
-function Home() {
-  return (
-    <div className="min-h-screen">
-      <h1 className="p-10 text-3xl font-bold">
-        Home Page
-      </h1>
-    </div>
-  );
-}
 
-function Titan() {
-  return (
-    <div className="min-h-screen">
-      <h1 className="p-10 text-3xl font-bold">
-        Titan Watches
-      </h1>
-    </div>
-  );
-}
-
-function Fastrack() {
-  return (
-    <div className="min-h-screen">
-      <h1 className="p-10 text-3xl font-bold">
-        Fastrack Watches
-      </h1>
-    </div>
-  );
-}
-
-function AboutUs() {
-  return (
-    <div className="min-h-screen">
-      <h1 className="p-10 text-3xl font-bold">
-        About Us
-      </h1>
-    </div>
-  );
-}
-
-function ContactUs() {
-  return (
-    <div className="min-h-screen">
-      <h1 className="p-10 text-3xl font-bold">
-        Contact Us
-      </h1>
-    </div>
-  );
-}
 
 function App() {
   return (
@@ -59,13 +13,10 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/titan" element={<Titan />} />
-        <Route path="/fastrack" element={<Fastrack />} />
-        <Route path="/about-us" element={<AboutUs />} />
-        <Route path="/contact-us" element={<ContactUs />} />
+       
+        <Route path="/about-us" element={<About />} />
+        <Route path="/contact-us" element={<Contact />} />
       </Routes>
-
-      <Footer />
     </BrowserRouter>
   );
 }
