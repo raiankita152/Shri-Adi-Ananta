@@ -1,17 +1,17 @@
-import logo from "../../assets/images/logo/sri-adi-ananta-logo.png";
+import logo from "../../assets/images/logo/sri_adi_ananta_logo.png";
 const Footer = () => {
   return (
     <footer className="w-full bg-white text-black">
 
       {/* ================= MAIN FOOTER ================= */}
-      <div className="border-b border-black">
+      <div className="border-t border-b border-black">
 
-        <div className="mx-auto grid max-w-[1280px] grid-cols-1 gap-12 px-8 py-12
+        <div className="mx-auto grid max-w-[1280px] grid-cols-1 gap-12 px-8 py-20 
                         sm:grid-cols-2
-                        lg:grid-cols-4 lg:gap-16 lg:px-12 lg:py-12">
+                        lg:grid-cols-4 lg:gap-20 lg:px-0 lg:py-20">
 
           {/* ================= LOGO & SOCIAL ================= */}
-          <div className="flex flex-col">
+          <div className="lg:-translate-y-10 flex flex-col">
 
             {/* Logo */}
             <img
@@ -109,7 +109,7 @@ const Footer = () => {
           {/* ================= QUICK LINKS ================= */}
           <div className="lg:pt-1">
 
-            <h3 className="font-serif text-[20px] font-bold uppercase">
+            <h3 className="font-Faustina text-[20px] font-bold uppercase">
               QUICK LINKS
             </h3>
 
@@ -126,7 +126,7 @@ const Footer = () => {
 
               <li>
                 <a
-                  href="#"
+                  href="https://www.fastrack.in/"
                   className="transition-colors hover:text-gray-500"
                 >
                   Fastrack
@@ -135,7 +135,7 @@ const Footer = () => {
 
               <li>
                 <a
-                  href="#"
+                  href="https://www.titan.co.in/"
                   className="transition-colors hover:text-gray-500"
                 >
                   Titan
@@ -168,7 +168,7 @@ const Footer = () => {
           {/* ================= CONTACT US ================= */}
           <div className="lg:pt-1">
 
-            <h3 className="font-serif text-[20px] font-bold uppercase">
+            <h3 className="font-Faustina text-[20px] font-bold uppercase">
               CONTACT US
             </h3>
 
@@ -176,19 +176,19 @@ const Footer = () => {
 
               <li>
                 <a
-                  href="tel:7296933687"
+                  href="tel:+91 7296933687"
                   className="transition-colors hover:text-gray-500"
                 >
-                  7296933687
+                  +91 7296933687
                 </a>
               </li>
 
               <li>
                 <a
-                  href="mailto:asdfgh.com"
+                  href="mailto:contact@sriadiananta.com"
                   className="transition-colors hover:text-gray-500"
                 >
-                  asdfgh.com
+                  contact@sriadiananta.com
                 </a>
               </li>
 
