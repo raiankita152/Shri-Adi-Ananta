@@ -1,4 +1,6 @@
 import logo from "../../assets/logo/sri_adi_ananta.png";
+import { Link } from "react-router-dom";
+
 const Footer = () => {
   return (
     <footer className="w-full bg-white text-black">
@@ -11,14 +13,14 @@ const Footer = () => {
                         lg:grid-cols-4 lg:gap-20 lg:px-0 lg:py-20">
 
           {/* ================= LOGO & SOCIAL ================= */}
-          <div className="lg:-translate-y-10 flex flex-col">
+          <div className="flex flex-col lg:-translate-y-10">
 
             {/* Logo */}
             <img
-  src={logo}
-  alt="Sri Adi Ananta"
-  className="h-auto w-[230px] object-contain"
-/>
+              src={logo}
+              alt="Sri Adi Ananta"
+              className="h-auto w-[230px] object-contain"
+            />
 
             {/* Tagline */}
             <p className="mt-4 text-[20px] leading-[1.25] font-normal">
@@ -34,9 +36,7 @@ const Footer = () => {
               <a
                 href="#"
                 aria-label="Facebook"
-                className="flex h-[50px] w-[50px] items-center justify-center
-                           rounded-full border border-black
-                           transition-all duration-200 hover:bg-black hover:text-white"
+                className="flex h-[50px] w-[50px] items-center justify-center rounded-full border border-black transition-all duration-200 hover:bg-black hover:text-white"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -51,9 +51,7 @@ const Footer = () => {
               <a
                 href="#"
                 aria-label="Instagram"
-                className="flex h-[50px] w-[50px] items-center justify-center
-                           rounded-full border border-black
-                           transition-all duration-200 hover:bg-black hover:text-white"
+                className="flex h-[50px] w-[50px] items-center justify-center rounded-full border border-black transition-all duration-200 hover:bg-black hover:text-white"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -63,7 +61,13 @@ const Footer = () => {
                 >
                   <rect x="3" y="3" width="18" height="18" rx="5" />
                   <circle cx="12" cy="12" r="4" />
-                  <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+                  <circle
+                    cx="17.5"
+                    cy="6.5"
+                    r="1"
+                    fill="currentColor"
+                    stroke="none"
+                  />
                 </svg>
               </a>
 
@@ -71,9 +75,7 @@ const Footer = () => {
               <a
                 href="#"
                 aria-label="YouTube"
-                className="flex h-[50px] w-[50px] items-center justify-center
-                           rounded-full border border-black
-                           transition-all duration-200 hover:bg-black hover:text-white"
+                className="flex h-[50px] w-[50px] items-center justify-center rounded-full border border-black transition-all duration-200 hover:bg-black hover:text-white"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -89,9 +91,7 @@ const Footer = () => {
               <a
                 href="#"
                 aria-label="X"
-                className="flex h-[50px] w-[50px] items-center justify-center
-                           rounded-full border border-black
-                           transition-all duration-200 hover:bg-black hover:text-white"
+                className="flex h-[50px] w-[50px] items-center justify-center rounded-full border border-black transition-all duration-200 hover:bg-black hover:text-white"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -116,17 +116,19 @@ const Footer = () => {
             <ul className="mt-5 space-y-5 text-[18px]">
 
               <li>
-                <a
-                  href="/"
+                <Link
+                  to="/"
                   className="transition-colors hover:text-gray-500"
                 >
                   Home
-                </a>
+                </Link>
               </li>
 
               <li>
                 <a
                   href="https://www.fastrack.in/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="transition-colors hover:text-gray-500"
                 >
                   Fastrack
@@ -136,6 +138,8 @@ const Footer = () => {
               <li>
                 <a
                   href="https://www.titan.co.in/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="transition-colors hover:text-gray-500"
                 >
                   Titan
@@ -143,21 +147,21 @@ const Footer = () => {
               </li>
 
               <li>
-                <a
-                  href="/about"
+                <Link
+                  to="/about-us"
                   className="transition-colors hover:text-gray-500"
                 >
                   About Us
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a
-                  href="/contact"
+                <Link
+                  to="/contact-us"
                   className="transition-colors hover:text-gray-500"
                 >
                   Contact Us
-                </a>
+                </Link>
               </li>
 
             </ul>
@@ -176,7 +180,7 @@ const Footer = () => {
 
               <li>
                 <a
-                  href="tel:+91 7296933687"
+                  href="tel:+917296933687"
                   className="transition-colors hover:text-gray-500"
                 >
                   +91 7296933687
@@ -193,12 +197,12 @@ const Footer = () => {
               </li>
 
               <li>
-                <a
-                  href="/contact"
+                <Link
+                  to="/contact-us"
                   className="transition-colors hover:text-gray-500"
                 >
                   FAQs
-                </a>
+                </Link>
               </li>
 
             </ul>
@@ -216,21 +220,21 @@ const Footer = () => {
             <ul className="mt-5 space-y-5 text-[18px]">
 
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="/terms-and-conditions"
                   className="transition-colors hover:text-gray-500"
                 >
                   Terms &amp; Conditions
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="/privacy-policy"
                   className="transition-colors hover:text-gray-500"
                 >
                   Privacy Policy
-                </a>
+                </Link>
               </li>
 
             </ul>
