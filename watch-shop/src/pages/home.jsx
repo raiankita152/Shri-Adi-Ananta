@@ -1,9 +1,18 @@
 // Home.jsx
 
+import Navbar from "../Components/layout/navbar";
+import Footer from "../Components/layout/footer";
+
 const Home = () => {
   return (
     <>
-      {/* Home page content goes here */}
+      <Navbar />
+
+      <main>
+        {/* Home page content goes here */}
+      </main>
+
+      <Footer />
     </>
   );
 };
