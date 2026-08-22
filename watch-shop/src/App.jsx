@@ -4,20 +4,29 @@ import About from "./pages/about";
 import Contact from "./pages/contact";
 import PrivacyPolicy from "./pages/privacy";
 import TermsAndConditions from "./pages/terms_condition";
+import ScrollToTop from "./Components/layout/ScrollToTop";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
+    <>
+      {/* Scroll page to top whenever route changes */}
+      <ScrollToTop />
 
-      <Route path="/about-us" element={<About />} />
+      <Routes>
+        <Route path="/" element={<Home />} />
 
-      <Route path="/contact-us" element={<Contact />} />
+        <Route path="/about-us" element={<About />} />
 
-      <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-      
-      <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
-    </Routes>
+        <Route path="/contact-us" element={<Contact />} />
+
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+
+        <Route
+          path="/terms-and-conditions"
+          element={<TermsAndConditions />}
+        />
+      </Routes>
+    </>
   );
 }
 

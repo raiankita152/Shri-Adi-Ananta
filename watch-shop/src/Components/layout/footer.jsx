@@ -15,12 +15,18 @@ const Footer = () => {
           {/* ================= LOGO & SOCIAL ================= */}
           <div className="flex flex-col lg:-translate-y-10">
 
-            {/* Logo */}
-            <img
-              src={logo}
-              alt="Sri Adi Ananta"
-              className="h-auto w-[230px] object-contain"
-            />
+           {/* Logo */}
+<Link
+  to="/"
+  aria-label="Go to Home"
+  className="block"
+>
+  <img
+    src={logo}
+    alt="Sri Adi Ananta"
+    className="h-auto w-[230px] object-contain"
+  />
+</Link>
 
             {/* Tagline */}
             <p className="mt-4 text-[20px] leading-[1.25] font-normal">
