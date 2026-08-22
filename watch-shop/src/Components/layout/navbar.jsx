@@ -7,17 +7,20 @@ import fastrackLogo from "../../assets/logo/fastrack_navbar_logo.png";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const menuRef = useRef(null);
+  const [isNavbarVisible, setIsNavbarVisible] = useState(true);
+
+  const navbarRef = useRef(null);
+  const lastScrollY = useRef(0);
 
   // ==================================================
-  // CLOSE MENU WHEN CLICKING OUTSIDE
+  // CLOSE MENU WHEN CLICKING OUTSIDE NAVBAR
   // ==================================================
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
         isMenuOpen &&
-        menuRef.current &&
-        !menuRef.current.contains(event.target)
+        navbarRef.current &&
+        !navbarRef.current.contains(event.target)
       ) {
         setIsMenuOpen(false);
       }
@@ -31,14 +34,77 @@ const Navbar = () => {
   }, [isMenuOpen]);
 
   // ==================================================
+  // HIDE NAVBAR WHEN SCROLLING DOWN
+  // SHOW NAVBAR WHEN SCROLLING UP
+  // ==================================================
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      // Always show navbar at the top
+      if (currentScrollY <= 10) {
+        setIsNavbarVisible(true);
+        lastScrollY.current = currentScrollY;
+        return;
+      }
+
+      // Close mobile menu when scrolling
+      if (isMenuOpen) {
+        setIsMenuOpen(false);
+      }
+
+      // Scrolling DOWN
+      if (currentScrollY > lastScrollY.current) {
+        setIsNavbarVisible(false);
+      }
+
+      // Scrolling UP
+      else if (currentScrollY < lastScrollY.current) {
+        setIsNavbarVisible(true);
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [isMenuOpen]);
+
+  // ==================================================
   // CLOSE MENU
   // ==================================================
   const closeMenu = () => {
     setIsMenuOpen(false);
   };
 
+  // ==================================================
+  // TOGGLE MENU
+  // ==================================================
+  const toggleMenu = () => {
+    setIsMenuOpen((prev) => !prev);
+  };
+
   return (
-    <header className="fixed left-0 top-0 z-50 w-full bg-[#D7DFEA]">
+    <header
+      ref={navbarRef}
+      className={`
+        fixed
+        left-0
+        top-0
+        z-50
+        w-full
+        bg-[#D7DFEA]
+        transition-transform
+        duration-300
+        ease-in-out
+        ${isNavbarVisible ? "translate-y-0" : "-translate-y-full"}
+      `}
+    >
 
       {/* ==================================================
           NAVBAR
@@ -77,9 +143,10 @@ const Navbar = () => {
         ================================================== */}
         <div className="hidden items-center gap-8 lg:flex lg:gap-20 xl:gap-28">
 
-          {/* Home */}
+          {/* HOME */}
           <Link
             to="/"
+            onClick={closeMenu}
             className="
               text-[18px]
               font-semibold
@@ -95,7 +162,7 @@ const Navbar = () => {
           </Link>
 
 
-          {/* Titan */}
+          {/* TITAN */}
           <a
             href="https://www.titan.co.in/"
             target="_blank"
@@ -110,7 +177,7 @@ const Navbar = () => {
           </a>
 
 
-          {/* Fastrack */}
+          {/* FASTRACK */}
           <a
             href="https://www.fastrack.in/"
             target="_blank"
@@ -125,9 +192,10 @@ const Navbar = () => {
           </a>
 
 
-          {/* About Us */}
+          {/* ABOUT US */}
           <Link
             to="/about-us"
+            onClick={closeMenu}
             className="
               text-[18px]
               font-semibold
@@ -143,9 +211,10 @@ const Navbar = () => {
           </Link>
 
 
-          {/* Contact Us */}
+          {/* CONTACT US */}
           <Link
             to="/contact-us"
+            onClick={closeMenu}
             className="
               text-[18px]
               font-semibold
@@ -164,14 +233,14 @@ const Navbar = () => {
 
 
         {/* ==================================================
-            HAMBURGER BUTTON
+            HAMBURGER / CLOSE BUTTON
             ONLY VISIBLE BELOW lg
         ================================================== */}
         <button
           type="button"
-          aria-label="Open menu"
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           aria-expanded={isMenuOpen}
-          onClick={() => setIsMenuOpen((prev) => !prev)}
+          onClick={toggleMenu}
           className="
             flex
             h-[42px]
@@ -230,7 +299,6 @@ const Navbar = () => {
           ONLY VISIBLE BELOW lg
       ================================================== */}
       <div
-        ref={menuRef}
         className={`
           absolute
           left-0
