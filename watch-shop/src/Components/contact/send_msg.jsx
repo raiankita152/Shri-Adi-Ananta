@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
 
 const SendMessage = () => {
+  const form = useRef();
+
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -10,6 +13,27 @@ const SendMessage = () => {
   });
 
   const [errors, setErrors] = useState({});
+  const [isSending, setIsSending] = useState(false);
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+
+  useEffect(() => {
+  if (!showSuccessPopup) return;
+
+  const timer = setTimeout(() => {
+    setShowSuccessPopup(false);
+  }, 3000);
+
+  return () => clearTimeout(timer);
+}, [showSuccessPopup]);
+
+  // --------------------------------------------------
+  // EMAILJS CONFIGURATION
+  // Replace these three values with your EmailJS values
+  // --------------------------------------------------
+
+  const SERVICE_ID = "service_o5dykka";
+  const TEMPLATE_ID = "template_4t59ens";
+  const PUBLIC_KEY = "owTo53sq_o7dlTcl4";
 
   // Validate individual field while typing
   const validateField = (name, value) => {
@@ -39,12 +63,10 @@ const SendMessage = () => {
         return "";
       }
 
-      // Show error immediately if non-numeric characters are entered
       if (!/^\d+$/.test(trimmedValue)) {
         return "Enter a valid phone number of 10 digits.";
       }
 
-      // Show error only when more than 10 digits are entered
       if (trimmedValue.length > 10) {
         return "Enter a valid phone number of 10 digits.";
       }
@@ -56,7 +78,6 @@ const SendMessage = () => {
         return "";
       }
 
-      // Basic validation while typing
       if (
         trimmedValue.includes("@") &&
         !/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(
@@ -84,7 +105,10 @@ const SendMessage = () => {
     return "";
   };
 
-  // Handle input changes
+  // --------------------------------------------------
+  // HANDLE INPUT CHANGE
+  // --------------------------------------------------
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -93,7 +117,6 @@ const SendMessage = () => {
       [name]: value,
     }));
 
-    // Validate immediately while typing
     const errorMessage = validateField(name, value);
 
     setErrors((prevErrors) => ({
@@ -102,11 +125,14 @@ const SendMessage = () => {
     }));
   };
 
-  // Validate entire form when Send Message is clicked
+  // --------------------------------------------------
+  // VALIDATE COMPLETE FORM
+  // --------------------------------------------------
+
   const validateForm = () => {
     const newErrors = {};
 
-    /* ---------------- NAME VALIDATION ---------------- */
+    /* ---------------- NAME ---------------- */
 
     const trimmedName = formData.name.trim();
     const spaceCount = (trimmedName.match(/ /g) || []).length;
@@ -122,7 +148,7 @@ const SendMessage = () => {
       newErrors.name = "Enter a valid name.";
     }
 
-    /* ---------------- PHONE VALIDATION ---------------- */
+    /* ---------------- PHONE ---------------- */
 
     const phone = formData.phone.trim();
 
@@ -132,7 +158,7 @@ const SendMessage = () => {
       newErrors.phone = "Enter a valid phone number of 10 digits.";
     }
 
-    /* ---------------- EMAIL VALIDATION ---------------- */
+    /* ---------------- EMAIL ---------------- */
 
     const email = formData.email.trim();
 
@@ -144,7 +170,7 @@ const SendMessage = () => {
       newErrors.email = "Enter a valid email address.";
     }
 
-    /* ---------------- SUBJECT VALIDATION ---------------- */
+    /* ---------------- SUBJECT ---------------- */
 
     if (!formData.subject.trim()) {
       newErrors.subject = "Subject is required.";
@@ -152,7 +178,7 @@ const SendMessage = () => {
       newErrors.subject = "Subject must be at least 3 characters.";
     }
 
-    /* ---------------- MESSAGE VALIDATION ---------------- */
+    /* ---------------- MESSAGE ---------------- */
 
     if (!formData.message.trim()) {
       newErrors.message = "Message is required.";
@@ -165,20 +191,33 @@ const SendMessage = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  // --------------------------------------------------
+  // SEND FORM THROUGH EMAILJS
+  // --------------------------------------------------
+// Handle form submission
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    const isValid = validateForm();
+  const isValid = validateForm();
 
-    if (!isValid) {
-      return;
-    }
+  if (!isValid) {
+    return;
+  }
 
-    console.log("Form submitted:", formData);
+  setIsSending(true);
 
-    alert("Your message has been sent successfully!");
+  try {
+    await emailjs.sendForm(
+      SERVICE_ID,
+      TEMPLATE_ID,
+      form.current,
+      PUBLIC_KEY
+    );
 
+    // Show success popup
+    setShowSuccessPopup(true);
+
+    // Clear form
     setFormData({
       name: "",
       phone: "",
@@ -187,19 +226,37 @@ const SendMessage = () => {
       message: "",
     });
 
+    // Clear errors
     setErrors({});
-  };
+  } catch (error) {
+    console.error("EmailJS Error:", error);
+
+    alert(
+      "Sorry, your message could not be sent. Please try again later."
+    );
+  } finally {
+    setIsSending(false);
+  }
+};
+
   return (
     <div className="w-full rounded-[28px] bg-[#145DA0]/[0.07] px-8 py-12 sm:px-12 lg:px-16">
+
       {/* Heading */}
       <h2 className="font-['Faustina'] text-[30px] font-semibold text-black sm:text-[40px]">
         Get In Touch Now
       </h2>
 
-      <form className="mt-10" onSubmit={handleSubmit} noValidate>
+      <form
+        ref={form}
+        className="mt-10"
+        onSubmit={handleSubmit}
+        noValidate
+      >
+
         {/* Name and Phone Number */}
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-          
+
           {/* Name */}
           <div>
             <label
@@ -353,11 +410,16 @@ const SendMessage = () => {
         {/* Send Button */}
         <div className="mt-10 flex justify-center">
           <button
-            type="submit"
-            className="rounded-full bg-[#145DA0] px-10 py-3 font-['Inter'] text-[18px] font-medium text-white transition hover:bg-[#104d88]"
-          >
-            Send Message
-          </button>
+  type="submit"
+  disabled={isSending}
+  className={`rounded-full bg-[#145DA0] px-10 py-3 font-['Inter'] text-[18px] font-medium text-white transition ${
+    isSending
+      ? "cursor-not-allowed opacity-70"
+      : "hover:bg-[#104d88]"
+  }`}
+>
+  {isSending ? "Sending..." : "Send Message"}
+</button>
         </div>
 
         {/* Security Text */}
@@ -378,7 +440,95 @@ const SendMessage = () => {
             Your Information is secure and will not be shared.
           </p>
         </div>
-      </form>
+
+          </form>
+
+      {/* ================= SUCCESS POPUP ================= */}
+      {showSuccessPopup && (
+        <div
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/40 px-4 backdrop-blur-[2px]"
+          onMouseDown={(e) => {
+            if (e.target === e.currentTarget) {
+              setShowSuccessPopup(false);
+            }
+          }}
+        >
+          {/* Popup Box */}
+          <div
+            className="relative w-full max-w-[420px] rounded-2xl bg-white px-6 py-8 text-center shadow-2xl sm:px-8 sm:py-9 md:max-w-[480px]"
+            onMouseDown={(e) => e.stopPropagation()}
+          >
+
+            {/* X Close Button */}
+            <button
+              type="button"
+              onClick={() => setShowSuccessPopup(false)}
+              aria-label="Close success message"
+              className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full text-gray-500 transition hover:bg-gray-100 hover:text-black sm:right-5 sm:top-5"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                className="h-5 w-5"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 6l12 12M18 6L6 18"
+                />
+              </svg>
+            </button>
+
+            {/* Success Icon */}
+            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#145DA0]/10 sm:h-[72px] sm:w-[72px]">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#145DA0"
+                strokeWidth="2"
+                className="h-8 w-8 sm:h-9 sm:w-9"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M5 12.5l4.5 4.5L19 7.5"
+                />
+              </svg>
+            </div>
+
+            {/* Success Heading */}
+            <h3 className="mt-5 font-['Faustina'] text-[26px] font-semibold text-black sm:text-[30px]">
+              Message Sent Successfully!
+            </h3>
+
+            {/* Success Message */}
+            <p className="mx-auto mt-3 max-w-[360px] font-['Inter'] text-[14px] leading-6 text-gray-600 sm:text-[15px]">
+              Thank you for contacting us. We have received your enquiry
+              and will get back to you shortly.
+            </p>
+
+            {/* Done Button */}
+            <button
+              type="button"
+              onClick={() => setShowSuccessPopup(false)}
+              className="mt-6 rounded-full bg-[#145DA0] px-8 py-2.5 font-['Inter'] text-[15px] font-medium text-white transition hover:bg-[#104d88] sm:px-10 sm:py-3 sm:text-[16px]"
+            >
+              Done
+            </button>
+
+            {/* Auto Close Text */}
+            <p className="mt-4 font-['Inter'] text-[11px] text-gray-400 sm:text-[12px]">
+              This message will close automatically in 3 seconds.
+            </p>
+
+          </div>
+        </div>
+      )}
+
     </div>
   );
 };
