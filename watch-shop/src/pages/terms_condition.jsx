@@ -5,7 +5,7 @@ const TermsConditions = () => {
   return (
     <>
       <Navbar />
-<div className="h-[112px]" />
+<div className="h-[80px]" />
       <main className="w-full bg-white text-[#17191D]">
 
         {/* =====================================================

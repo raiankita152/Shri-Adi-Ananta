@@ -13,7 +13,7 @@ const Contact = () => {
       <Navbar />
 
       {/* Space for fixed navbar */}
-      <div className="h-[112px]" />
+      <div className="h-[80px]" />
       <main>
         {/* ================= PAGE HEADING ================= */}
         <section className="bg-[#F8F8F8] py-8 text-center">

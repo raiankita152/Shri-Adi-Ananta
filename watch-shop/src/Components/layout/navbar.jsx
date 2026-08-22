@@ -7,14 +7,14 @@ import fastrackLogo from "../../assets/logo/fastrack_navbar_logo.png";
 const Navbar = () => {
   return (
     <header className="fixed left-0 top-0 z-50 w-full bg-[#D7DFEA]">
-      <nav className="flex h-[112px] w-full items-center justify-between px-8 lg:px-12">
+      <nav className="flex h-[80px] w-full items-center justify-between px-8 lg:px-12">
 
         {/* Logo */}
         <Link to="/" className="shrink-0">
           <img
             src={sriAdiAnantaLogo}
             alt="Sri Adi Ananta"
-            className="w-[160px] object-contain"
+            className="w-[130px] object-contain"
           />
         </Link>
 

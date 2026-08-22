@@ -2,9 +2,28 @@ import React from "react";
 import emailjs from "@emailjs/browser";
 
 import heroBanner from "../../assets/images/home_page/home_page_banner.png";
+import heroBanner2 from "../../assets/images/home_page/home_page_banner2.png";
+import heroBanner3 from "../../assets/images/home_page/home_page_banner3.png";
 import arrowImage from "../../assets/images/home_page/arrow.png";
 
 const HeroBanner = () => {
+  const banners = [
+  heroBanner,
+  heroBanner2,
+  heroBanner3,
+];
+
+const [currentSlide, setCurrentSlide] = React.useState(0);
+
+React.useEffect(() => {
+  const interval = setInterval(() => {
+    setCurrentSlide((prevSlide) =>
+      prevSlide === banners.length - 1 ? 0 : prevSlide + 1
+    );
+  }, 4000);
+
+  return () => clearInterval(interval);
+}, []);
 
   const SERVICE_ID = "service_o5dykka";
   const TEMPLATE_ID = "template_pret2m7";
@@ -136,28 +155,38 @@ const HeroBanner = () => {
   // ==================================================
   // RETURN
   // ==================================================
+  
   return (
     <section className="relative w-full overflow-hidden">
 
-      {/* ==================================================
-          BACKGROUND IMAGE
-      ================================================== */}
-      <img
-        src={heroBanner}
-        alt="Sri Adi Ananta Watches"
-        className="
-          absolute
-          inset-0
-          h-full
-          w-full
-          object-cover
-          object-center
-        "
-      />
+      {/* HERO BACKGROUND SLIDER */}
+      <div className="absolute inset-0 h-full w-full">
+        {banners.map((banner, index) => (
+          <img
+            key={index}
+            src={banner}
+            alt={`Sri Adi Ananta Watches Banner ${index + 1}`}
+            className={`
+              absolute
+              inset-0
+              h-full
+              w-full
+              object-cover
+              object-center
+              transition-opacity
+              duration-1000
+              ease-in-out
+              ${
+                index === currentSlide
+                  ? "opacity-100"
+                  : "opacity-0"
+              }
+            `}
+          />
+        ))}
+      </div>
 
-      {/* ==================================================
-          LIGHT OVERLAY
-      ================================================== */}
+      {/* LIGHT OVERLAY */}
       <div className="absolute inset-0 bg-white/10" />
 
 
@@ -191,6 +220,7 @@ const HeroBanner = () => {
           xl:px-20
         "
       >
+
 
         <div
           className="

@@ -10,7 +10,7 @@ const Home = () => {
   return (
     <>
       <Navbar />
-<div className="h-[112px]" />
+<div className="h-[80px]" />
       <main>
           <HeroBanner />
           <Brands />
