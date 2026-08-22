@@ -15,11 +15,6 @@ import policeImage from "../../assets/images/home_page/boy_police.png";
 import edgeImage from "../../assets/images/home_page/girl_edge.png";
 import kennethImage from "../../assets/images/home_page/boy_kenneth.png";
 
-
-
-
-
-
 // ===============================
 // BRAND LOGOS
 // ===============================
@@ -33,7 +28,6 @@ import nebulaLogo from "../../assets/images/home_page/nebula_logo.png";
 import policeLogo from "../../assets/images/home_page/Police_logo.png";
 import kennethLogo from "../../assets/images/home_page/kenneth_cole_logo.png";
 import edgeLogo from "../../assets/images/home_page/edge_logo.png";
-
 
 const Brands = () => {
 
@@ -77,21 +71,22 @@ const Brands = () => {
       logo: xylysLogo,
     },
     {
-        name: "POLICE",
-        image: policeImage,
-        logo: policeLogo,
-    },
-    {   
-    name: "KENNETH COLE",
-    image: kennethImage,
-    logo: kennethLogo,
+      name: "POLICE",
+      image: policeImage,
+      logo: policeLogo,
     },
     {
-        name: "EDGE",   
-        image: edgeImage,
-        logo: edgeLogo,
+      name: "KENNETH COLE",
+      image: kennethImage,
+      logo: kennethLogo,
+    },
+    {
+      name: "EDGE",
+      image: edgeImage,
+      logo: edgeLogo,
     },
   ];
+
   // ===============================
   // INFINITE BRAND DATA
   // ===============================
@@ -106,108 +101,110 @@ const Brands = () => {
   // ===============================
   const sliderRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(2);
-// ===============================
-// INFINITE AUTO SCROLL + MANUAL SCROLL
-// ===============================
-useEffect(() => {
-  const slider = sliderRef.current;
 
-  if (!slider) return;
+  // ===============================
+  // INFINITE AUTO SCROLL + MANUAL SCROLL
+  // ===============================
+  useEffect(() => {
+    const slider = sliderRef.current;
 
-  let animationFrame;
-  let isPaused = false;
-  let resumeTimeout;
+    if (!slider) return;
 
-  const speed = 0.5;
+    let animationFrame;
+    let isPaused = false;
+    let resumeTimeout;
 
-  const animate = () => {
-    if (!isPaused) {
-      slider.scrollLeft += speed;
+    const speed = 0.5;
 
-      // Width of one complete set of brands
-      const oneSetWidth = slider.scrollWidth / 3;
+    const animate = () => {
+      if (!isPaused) {
+        slider.scrollLeft += speed;
 
-      // Infinite loop
-      if (slider.scrollLeft >= oneSetWidth) {
-        slider.scrollLeft -= oneSetWidth;
+        // Width of one complete set of brands
+        const oneSetWidth = slider.scrollWidth / 3;
+
+        // Infinite loop
+        if (slider.scrollLeft >= oneSetWidth) {
+          slider.scrollLeft -= oneSetWidth;
+        }
+
+        // If user somehow scrolls before the first set,
+        // move them back into the middle set.
+        if (slider.scrollLeft <= 0) {
+          slider.scrollLeft += oneSetWidth;
+        }
       }
 
-      // If user somehow scrolls before the first set,
-      // move them back into the middle set.
-      if (slider.scrollLeft <= 0) {
-        slider.scrollLeft += oneSetWidth;
-      }
-    }
+      animationFrame = requestAnimationFrame(animate);
+    };
+
+    // ===============================
+    // PAUSE AUTO SCROLL
+    // ===============================
+    const pauseScroll = () => {
+      isPaused = true;
+
+      clearTimeout(resumeTimeout);
+
+      // Resume automatically after user stops scrolling
+      resumeTimeout = setTimeout(() => {
+        isPaused = false;
+      }, 1500);
+    };
+
+    // ===============================
+    // MOUSE EVENTS
+    // ===============================
+    slider.addEventListener("mouseenter", () => {
+      isPaused = true;
+    });
+
+    slider.addEventListener("mouseleave", () => {
+      isPaused = false;
+    });
+
+    // ===============================
+    // TOUCH EVENTS
+    // ===============================
+    slider.addEventListener("touchstart", pauseScroll, {
+      passive: true,
+    });
+
+    slider.addEventListener("touchmove", pauseScroll, {
+      passive: true,
+    });
+
+    slider.addEventListener("touchend", () => {
+      clearTimeout(resumeTimeout);
+
+      resumeTimeout = setTimeout(() => {
+        isPaused = false;
+      }, 1500);
+    });
+
+    // ===============================
+    // MOUSE WHEEL
+    // ===============================
+    slider.addEventListener(
+      "wheel",
+      () => {
+        pauseScroll();
+      },
+      { passive: true }
+    );
 
     animationFrame = requestAnimationFrame(animate);
-  };
 
-  // ===============================
-  // PAUSE AUTO SCROLL
-  // ===============================
-  const pauseScroll = () => {
-    isPaused = true;
+    return () => {
+      cancelAnimationFrame(animationFrame);
 
-    clearTimeout(resumeTimeout);
+      clearTimeout(resumeTimeout);
 
-    // Resume automatically after user stops scrolling
-    resumeTimeout = setTimeout(() => {
-      isPaused = false;
-    }, 1500);
-  };
+      slider.removeEventListener("touchstart", pauseScroll);
+      slider.removeEventListener("touchmove", pauseScroll);
+    };
+  }, []);
 
-  // ===============================
-  // MOUSE EVENTS
-  // ===============================
-  slider.addEventListener("mouseenter", () => {
-    isPaused = true;
-  });
-
-  slider.addEventListener("mouseleave", () => {
-    isPaused = false;
-  });
-
-  // ===============================
-  // TOUCH EVENTS
-  // ===============================
-  slider.addEventListener("touchstart", pauseScroll, {
-    passive: true,
-  });
-
-  slider.addEventListener("touchmove", pauseScroll, {
-    passive: true,
-  });
-
-  slider.addEventListener("touchend", () => {
-    clearTimeout(resumeTimeout);
-
-    resumeTimeout = setTimeout(() => {
-      isPaused = false;
-    }, 1500);
-  });
-
-  // ===============================
-  // MOUSE WHEEL
-  // ===============================
-  slider.addEventListener(
-    "wheel",
-    () => {
-      pauseScroll();
-    },
-    { passive: true }
-  );
-
-  animationFrame = requestAnimationFrame(animate);
-
-  return () => {
-    cancelAnimationFrame(animationFrame);
-
-    clearTimeout(resumeTimeout);
-
-    slider.removeEventListener("touchstart", pauseScroll);
-    slider.removeEventListener("touchmove", pauseScroll);
-  };
-}, []);
   // ===============================
   // UPDATE ACTIVE DOT
   // ===============================
@@ -219,7 +216,8 @@ useEffect(() => {
 
     const scrollLeft = slider.scrollLeft;
 
-    const cardWidth = slider.firstElementChild?.offsetWidth || 300;
+    const cardWidth =
+      slider.firstElementChild?.offsetWidth || 300;
 
     const gap = 28;
 
@@ -227,9 +225,9 @@ useEffect(() => {
       scrollLeft / (cardWidth + gap)
     );
 
-    setActiveIndex(index % brands.length);
+    // Only 5 pagination dots
+    setActiveIndex(index % 5);
   };
-
 
   // ===============================
   // SCROLL TO CARD
@@ -240,7 +238,10 @@ useEffect(() => {
 
     if (!slider) return;
 
-    const card = slider.children[index];
+    // Each dot represents 2 brands
+    const cardIndex = index * 2;
+
+    const card = slider.children[cardIndex];
 
     if (!card) return;
 
@@ -248,9 +249,9 @@ useEffect(() => {
       left: card.offsetLeft,
       behavior: "smooth",
     });
-setActiveIndex(index % brands.length);
-  };
 
+    setActiveIndex(index);
+  };
 
   // ===============================
   // SCROLL EVENT
@@ -271,7 +272,6 @@ setActiveIndex(index % brands.length);
 
   }, []);
 
-
   return (
     <section className="w-full bg-white py-12 sm:py-14 md:py-16 lg:py-20">
 
@@ -286,60 +286,58 @@ setActiveIndex(index % brands.length);
 
       </div>
 
-
       {/* ===============================
           BRAND SLIDER
       =============================== */}
       <div
-  ref={sliderRef}
-  onScroll={handleScroll}
-  className="
-    mx-auto
-    flex
-    w-full
-    max-w-[1300px]
-    gap-7
-    overflow-x-auto
-    px-8
-    pb-2
+        ref={sliderRef}
+        onScroll={handleScroll}
+        className="
+          mx-auto
+          flex
+          w-full
+          max-w-[1300px]
+          gap-7
+          overflow-x-auto
+          px-8
+          pb-2
 
-    sm:px-10
-    md:px-8
-    lg:px-0
+          sm:px-10
+          md:px-8
+          lg:px-0
 
-    [&::-webkit-scrollbar]:hidden
-    [-ms-overflow-style:none]
-    [scrollbar-width:none]
-  "
->
+          [&::-webkit-scrollbar]:hidden
+          [-ms-overflow-style:none]
+          [scrollbar-width:none]
+        "
+      >
 
-       {infiniteBrands.map((brand, index) => (
-  <div
-    key={`${brand.name}-${index}`}
-    className="snap-center"
-  >
-    <BrandCard
-      image={brand.image}
-      logo={brand.logo}
-      name={brand.name}
-    />
-  </div>
-))}
+        {infiniteBrands.map((brand, index) => (
+          <div
+            key={`${brand.name}-${index}`}
+            className="snap-center"
+          >
+            <BrandCard
+              image={brand.image}
+              logo={brand.logo}
+              name={brand.name}
+            />
+          </div>
+        ))}
 
       </div>
-
 
       {/* ===============================
           PAGINATION DOTS
       =============================== */}
       <div className="mt-7 flex items-center justify-center gap-2">
 
-        {brands.map((brand, index) => (
+        {[0, 1, 2, 3, 4].map((index) => (
 
           <button
-            key={brand.name}
+            key={index}
             type="button"
-            aria-label={`Go to ${brand.name}`}
+            aria-label={`Go to brand group ${index + 1}`}
             onClick={() => scrollToCard(index)}
             className={`
               h-[12px]
