@@ -1,5 +1,3 @@
-// Home.jsx
-
 import Navbar from "../Components/layout/navbar";
 import Footer from "../Components/layout/footer";
 import HeroBanner from "../Components/home/hero_banner";
