@@ -6,7 +6,7 @@ import fastrackLogo from "../../assets/logo/fastrack_navbar_logo.png";
 
 const Navbar = () => {
   return (
-    <header className="w-full bg-[#D7DFEA]">
+    <header className="fixed left-0 top-0 z-50 w-full bg-[#D7DFEA]">
       <nav className="flex h-[112px] w-full items-center justify-between px-8 lg:px-12">
 
         {/* Logo */}
