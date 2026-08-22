@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Navbar from "../Components/layout/navbar";
 import Footer from "../Components/layout/footer";
 import BannerSection from "../Components/about/bannerSection";
@@ -15,15 +16,20 @@ const About = () => {
           </h1>
 
           {/* Breadcrumb */}
-          <div className="mt-2 font-['Inter'] text-[15px] font-medium">
-            <span className="text-[#000000]">HOME</span>
+<div className="mt-2 font-['Inter'] text-[15px] font-medium">
+  <Link
+    to="/"
+    className="text-black transition-colors duration-200 hover:text-[#145DA0]"
+  >
+    HOME
+  </Link>
 
-            <span className="mx-1 text-[#000000]">/</span>
+  <span className="mx-1 text-black">/</span>
 
-            <span className="text-[#145da0]">
-              ABOUT US
-            </span>
-          </div>
+  <span className="text-[#145DA0]">
+    ABOUT
+  </span>
+</div>
         </section>
         <BannerSection />
 

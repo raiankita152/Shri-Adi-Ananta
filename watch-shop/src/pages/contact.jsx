@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import Navbar from "../Components/layout/navbar";
 import Footer from "../Components/layout/footer";
 import Banner from "../Components/contact/banner";
@@ -18,15 +20,21 @@ const Contact = () => {
           </h1>
 
           {/* Breadcrumb */}
-          <div className="mt-2 font-['Inter'] text-[15px] font-medium">
-            <span className="text-black">HOME</span>
+{/* Breadcrumb */}
+<div className="mt-2 font-['Inter'] text-[15px] font-medium">
+  <Link
+    to="/"
+    className="text-black transition-colors duration-200 hover:text-[#145DA0]"
+  >
+    HOME
+  </Link>
 
-            <span className="mx-1 text-black">/</span>
+  <span className="mx-1 text-black">/</span>
 
-            <span className="text-[#145DA0]">
-              CONTACT US
-            </span>
-          </div>
+  <span className="text-[#145DA0]">
+    CONTACT
+  </span>
+</div>
         </section>
 
         {/* ================= CONTACT BANNER ================= */}
