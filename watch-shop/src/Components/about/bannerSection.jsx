@@ -87,13 +87,13 @@ const BannerSection = () => {
           className="block h-[250px] w-full object-cover sm:h-[850px] lg:h-auto lg:min-h-0"
         />
 
-        <div className="absolute left-[10%] right-[7%] top-1/2 z-10 w-auto max-w-none -translate-y-1/2 bg-[#000000]/50 px-[7%] py-10 text-white sm:left-[12%] sm:right-[12%] sm:px-[6%] sm:py-12 lg:left-auto lg:right-[8%] lg:top-[156px] lg:w-[42%] lg:max-w-[700px] lg:translate-y-0 lg:px-[4%] lg:py-[4%] lg:pb-[7%]">
+        <div className="absolute left-[16%] right-[6%] top-1/2 z-10 w-auto max-w-none -translate-y-1/2 bg-[#000000]/50 px-[7%] py-10 text-white sm:left-[12%] sm:right-[12%] sm:px-[6%] sm:py-12 lg:left-auto lg:right-[8%] lg:top-[156px] lg:w-[42%] lg:max-w-[700px] lg:translate-y-0 lg:px-[4%] lg:py-[4%] lg:pb-[7%]">
 
-          <h2 className="mb-6 font-['Faustina'] text-[26px] font-semibold uppercase tracking-[0.1em] sm:text-[36px] lg:mb-10 lg:text-[40px] lg:tracking-[0.15em]">
+          <h2 className="mb-6 font-['Faustina'] text-[24px] font-semibold uppercase tracking-[0.1em] sm:text-[36px] lg:mb-10 lg:text-[40px] lg:tracking-[0.15em]">
             WHAT WE DO
           </h2>
 
-          <p className="font-['Inter'] text-[14px] font-medium leading-[1.8] tracking-[0.03em] sm:text-[17px] lg:mt-6 lg:text-[20px] lg:leading-[2] lg:tracking-[0.05em]">
+          <p className="font-['Inter'] text-[12px] font-medium leading-[1.8] tracking-[0.03em] sm:text-[17px] lg:mt-6 lg:text-[20px] lg:leading-[2] lg:tracking-[0.05em]">
             With multiple stores at different locations, we make quality
             products accessible to customers while ensuring authenticity
             and trusted service. Our team helps customers choose the right
