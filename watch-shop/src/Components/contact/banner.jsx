@@ -14,7 +14,7 @@ const Banner = () => {
       {/* Text Overlay */}
       <div className="absolute inset-0 flex items-center">
         
-        <div className="ml-[7%] max-w-[80%] -translate-y-[20px] pr-5 sm:max-w-[620px] lg:-translate-y-[60px] lg:max-w-[550px]">   
+        <div className="ml-[7%] max-w-[250px] -translate-y-[20px] pr-5 sm:max-w-[620px] lg:-translate-y-[60px] lg:max-w-[550px]">   
           <h1 className="font-['Faustina'] text-[26px] font-bold uppercase leading-[1.35] tracking-[0.06em] text-[#000000] sm:text-[38px] lg:text-[40px] lg:leading-[1.6] lg:tracking-[0.12em]">
             WHERE TIME MEETS
             <br />
