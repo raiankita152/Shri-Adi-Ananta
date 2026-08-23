@@ -259,7 +259,7 @@ const HeroBanner = () => {
           w-full
           max-w-[1440px]
 
-          min-h-[700px]
+          min-h-[600px]
           px-5
           py-10
 
@@ -309,7 +309,7 @@ const HeroBanner = () => {
                 invisible
                 font-Faustina
                 text-[48px]
-                font-medium
+                font-bold
                 leading-[1.15]
                 tracking-[1px]
                 text-[#17191D]
@@ -381,20 +381,22 @@ const HeroBanner = () => {
             TABLET + MOBILE FORM
             FORM APPEARS AFTER HERO IMAGE
         ================================================== */}
-        <div
-          className="
-            block
-            w-full
-            py-8
+      <div
+  className="
+    block
+    w-full
+    pt-8
+    pb-3
 
-            sm:py-10
+    sm:pt-10
+    sm:pb-5
 
-            md:py-12
+    md:pt-12
+    md:pb-6
 
-            lg:hidden
-          "
-        >
-
+    lg:hidden
+  "
+>
           <div
             className="
               mx-auto
@@ -486,7 +488,7 @@ const FormContent = ({
           font-Faustina
           text-[27px]
           font-semibold
-          text-[#000000]
+        text-[#000000]
 
           sm:text-[24px]
 

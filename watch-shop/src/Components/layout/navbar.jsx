@@ -7,11 +7,7 @@ import fastrackLogo from "../../assets/logo/fastrack_navbar_logo.png";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isNavbarVisible, setIsNavbarVisible] = useState(true);
-
   const navbarRef = useRef(null);
-  const lastScrollY = useRef(0);
-
   // ==================================================
   // CLOSE MENU WHEN CLICKING OUTSIDE NAVBAR
   // ==================================================
@@ -34,36 +30,16 @@ const Navbar = () => {
   }, [isMenuOpen]);
 
   // ==================================================
-  // HIDE NAVBAR WHEN SCROLLING DOWN
-  // SHOW NAVBAR WHEN SCROLLING UP
+  // CLOSE MOBILE / TABLET MENU WHEN SCROLLING
+  // NAVBAR STAYS FIXED AND VISIBLE
   // ==================================================
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-
-      // Always show navbar at the top
-      if (currentScrollY <= 10) {
-        setIsNavbarVisible(true);
-        lastScrollY.current = currentScrollY;
-        return;
-      }
-
-      // Close mobile menu when scrolling
-      if (isMenuOpen) {
+      // Only close the opened menu on tablet and mobile.
+      // Desktop has no mobile/tablet menu.
+      if (window.innerWidth < 1024 && isMenuOpen) {
         setIsMenuOpen(false);
       }
-
-      // Scrolling DOWN
-      if (currentScrollY > lastScrollY.current) {
-        setIsNavbarVisible(false);
-      }
-
-      // Scrolling UP
-      else if (currentScrollY < lastScrollY.current) {
-        setIsNavbarVisible(true);
-      }
-
-      lastScrollY.current = currentScrollY;
     };
 
     window.addEventListener("scroll", handleScroll, {
@@ -92,18 +68,14 @@ const Navbar = () => {
   return (
     <header
       ref={navbarRef}
-      className={`
+      className="
         fixed
         left-0
         top-0
         z-50
         w-full
         bg-[#D7DFEA]
-        transition-transform
-        duration-300
-        ease-in-out
-        ${isNavbarVisible ? "translate-y-0" : "-translate-y-full"}
-      `}
+      "
     >
 
       {/* ==================================================
@@ -364,7 +336,7 @@ const Navbar = () => {
             <img
               src={titanLogo}
               alt="Titan"
-              className="w-[90px] object-contain sm:w-[100px]"
+              className="h-[20px] w-[90px] object-contain sm:h-[34px] sm:w-[100px]"
             />
           </a>
 

@@ -2,7 +2,9 @@ import premiumQuality from "../../assets/images/home_page/premiumquality_vector.
 import customerSupport from "../../assets/images/home_page/customer_support_vector.png";
 import secureShopping from "../../assets/images/home_page/secure_shopping_vector.png";
 import stylesIcon from "../../assets/images/home_page/over10kstyle_vector.png";
+
 import specialistBanner from "../../assets/images/home_page/banner2_homepage.png";
+import mobileSpecialistBanner from "../../assets/images/home_page/b2.png";
 
 const SpecialistStore = () => {
   const features = [
@@ -40,28 +42,59 @@ const SpecialistStore = () => {
           w-full
           min-h-[580px]
           overflow-hidden
-          bg-cover
-          bg-[position:45%_center]
-          bg-no-repeat
-
+          
           sm:min-h-[620px]
-          sm:bg-[position:15%_center]
-
           md:min-h-[680px]
-            md:bg-[position:35%_center]
-
           lg:min-h-[710px]
-          lg:bg-center
         "
-        style={{
-          backgroundImage: `url(${specialistBanner})`,
-        }}
-      >
+      >{/* ==================================================
+    MOBILE + TABLET BACKGROUND IMAGE
+    b2.png
+================================================== */}
+<div
+  className="
+    absolute
+    inset-0
+    bg-cover
+    bg-[position:75%_center]
+    bg-no-repeat
 
-        {/* ================= CONTENT ================= */}
+    lg:hidden
+  "
+  style={{
+    backgroundImage: `url(${mobileSpecialistBanner})`,
+  }}
+/>
+
+
+{/* ==================================================
+    DESKTOP BACKGROUND IMAGE
+    banner2_homepage.png
+================================================== */}
+<div
+  className="
+    absolute
+    inset-0
+    hidden
+    bg-cover
+    bg-no-repeat
+
+    lg:block
+    lg:bg-[position:50%_center]
+  "
+  style={{
+    backgroundImage: `url(${specialistBanner})`,
+  }}
+/>
+
+        {/* ==================================================
+            CONTENT
+        ================================================== */}
         <div className="absolute inset-0 flex flex-col justify-between">
 
-          {/* ================= HEADING ================= */}
+          {/* ==================================================
+              HEADING
+          ================================================== */}
           <div
             className="
               px-5
@@ -105,6 +138,7 @@ const SpecialistStore = () => {
               Need a closer look? Come visit us in store
             </p>
 
+
             <h2
               className="
                 max-w-[340px]
@@ -139,7 +173,9 @@ const SpecialistStore = () => {
           </div>
 
 
-          {/* ================= FEATURES ================= */}
+          {/* ==================================================
+              FEATURES
+          ================================================== */}
           <div
             className="
               w-full
@@ -159,13 +195,15 @@ const SpecialistStore = () => {
             "
           >
 
-            {/* Horizontal line */}
+            {/* ==================================================
+                HORIZONTAL LINE
+            ================================================== */}
             <div
               className="
                 mx-2
                 mb-1
                 h-[0.2px]
-                bg-white/15
+                bg-white/10
 
                 sm:mx-3
                 sm:mb-2
@@ -177,7 +215,9 @@ const SpecialistStore = () => {
             />
 
 
-            {/* FEATURES GRID */}
+            {/* ==================================================
+                FEATURES GRID
+            ================================================== */}
             <div className="grid grid-cols-2 lg:grid-cols-4">
 
               {features.map((feature, index) => (
@@ -225,7 +265,9 @@ const SpecialistStore = () => {
                   `}
                 >
 
-                  {/* VECTOR ICON */}
+                  {/* ==================================================
+                      VECTOR ICON
+                  ================================================== */}
                   <img
                     src={feature.icon}
                     alt={feature.title}
@@ -247,7 +289,9 @@ const SpecialistStore = () => {
                   />
 
 
-                  {/* TEXT */}
+                  {/* ==================================================
+                      TEXT
+                  ================================================== */}
                   <div className="min-w-0 pl-2 lg:pl-3">
 
                     <h3

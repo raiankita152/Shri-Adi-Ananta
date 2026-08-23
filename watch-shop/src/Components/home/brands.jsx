@@ -273,8 +273,7 @@ const Brands = () => {
   }, []);
 
   return (
-    <section className="w-full bg-white py-12 sm:py-14 md:py-16 lg:py-20">
-
+<section className="w-full bg-white pt-6 pb-12 sm:py-14 md:py-16 lg:py-20">
       {/* ===============================
           SECTION HEADING
       =============================== */}
