@@ -42,7 +42,7 @@ const FAQ = () => {
   };
 
   return (
-    <section className="w-full px-4 pb-12 pt-4 sm:px-8 sm:pb-16 md:px-10 lg:px-[77px] lg:pb-20">
+    <section className="w-full px-6 pb-[70px] sm:px-8 sm:pb-16 md:px-10 lg:px-[77px] lg:pb-20">
       
       {/* FAQ Accordion */}
       <div className="mx-auto mt-8 flex w-full max-w-full flex-col gap-3 rounded-[24px] bg-[#145DA0]/[0.07] px-4 py-6 sm:mt-10 sm:gap-4 sm:rounded-[32px] sm:px-8 sm:py-8 md:px-10 lg:mt-14 lg:gap-4 lg:rounded-[40px] lg:px-20 lg:py-10">

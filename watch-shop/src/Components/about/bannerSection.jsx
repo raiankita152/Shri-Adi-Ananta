@@ -23,7 +23,7 @@ const BannerSection = () => {
   />
 
   <div className="absolute inset-0 flex items-center">
-    <div className="ml-[6%] max-w-[80%] -translate-y-[20px] pr-5 sm:max-w-[620px] lg:-translate-y-[60px] lg:max-w-[620px]">
+    <div className="ml-[6%] max-w-[250px] -translate-y-[8px] pr-5 sm:max-w-[620px] lg:-translate-y-[60px] lg:max-w-[620px]">
       
       <h1 className="font-['Faustina'] text-[26px] font-semibold uppercase leading-[1.35] tracking-[0.06em] text-black sm:text-[38px] lg:text-[46px] lg:leading-[1.45] lg:tracking-[0.1em]">
         YOUR STYLE DESERVES

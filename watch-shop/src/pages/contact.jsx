@@ -67,12 +67,7 @@ const Contact = () => {
             </div>
           </div>
         </section>
-
-        {/* ================= FAQ SECTION ================= */}
-        <FAQ />
-
-        {/* ================= STORE LOCATION MAP ================= */}
-        <section className="w-full px-6 pb-[70px] lg:px-12 xl:px-0">
+         <section className="w-full px-6 pb-[70px] lg:px-12 xl:px-0">
           <div className="mx-auto h-[450px] w-full max-w-[1320px] overflow-hidden rounded-[28px]">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28132.98470544973!2d76.77799701690671!3d28.188376031373085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d49dba861c627%3A0x96444393a5c5a11b!2sTitan%20World%20-%20Bhiwadi!5e0!3m2!1sen!2sin!4v1787307020874!5m2!1sen!2sin"
@@ -84,6 +79,12 @@ const Contact = () => {
             />
           </div>
         </section>
+
+        {/* ================= FAQ SECTION ================= */}
+        <FAQ />
+
+        {/* ================= STORE LOCATION MAP ================= */}
+       
       </main>
 
       <Footer />

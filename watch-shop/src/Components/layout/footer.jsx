@@ -8,7 +8,7 @@ const Footer = () => {
       {/* ================= MAIN FOOTER ================= */}
       <div className="border-t border-b border-black">
 
-        <div className="mx-auto grid max-w-[1280px] grid-cols-1 gap-12 px-8 py-20 
+        <div className="mx-auto grid max-w-[1280px] grid-cols-1 gap-12 px-10 py-16 
                         sm:grid-cols-2
                         lg:grid-cols-4 lg:gap-20 lg:px-0 lg:py-20">
 
@@ -253,7 +253,7 @@ const Footer = () => {
 
 
       {/* ================= COPYRIGHT ================= */}
-      <div className="flex min-h-[105px] items-center justify-center px-6">
+      <div className="flex lg:min-h-[105px] min-h-[80px] items-center justify-center px-6">
 
         <p className="text-center text-[18px] font-bold">
           © Sri Adi Ananta. All Rights Reserved.
