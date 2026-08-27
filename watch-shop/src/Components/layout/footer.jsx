@@ -256,7 +256,7 @@ const Footer = () => {
       <div className="flex lg:min-h-[105px] min-h-[80px] items-center justify-center px-6">
 
         <p className="text-center text-[18px] font-bold">
-          © Sri Adi Ananta. All Rights Reserved.
+          © SRI ADI ANANTA LLP. All Rights Reserved.
         </p>
 
       </div>
